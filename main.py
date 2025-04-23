@@ -1,9 +1,16 @@
 import discord
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+PREFIX = os.getenv('DISCORD_PREFIX')
 
 intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
+
 
 @client.event
 async def on_ready():
@@ -14,7 +21,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('/hello'):
+    if message.content.startswith(f'{PREFIX}hello'):
         await message.channel.send('Hello World! I am alive!')
 
-client.run('MTM2NDU5NDgyMDM0OTQzMTkyOA.GmQLCk.xk9MIwFGj8ZcqFPGx0osd1d0yoQ76PwfV3hpYs')
+client.run(TOKEN)
