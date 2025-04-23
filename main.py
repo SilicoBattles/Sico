@@ -39,14 +39,14 @@ async def on_message(message):
     
     # Help 
     if message.content.startswith(f'{PREFIX}help'):
-        await message.channel.send('Hello World! I am alive!')
+        await message.channel.send('Hello World! I am alive to help!')
     
     # Music
     if message.content.startswith(f'{PREFIX}music'):
-        await message.channel.send('Hello World! I am alive!')
+        await message.channel.send('Hello World! I am alive to play music!')
     
     # Meme 
-    if message.content.startswith(f'{PREFIX}help'):
-        await message.channel.send('Hello World! I am alive!')
+    if message.content.startswith(f'{PREFIX}meme'):
+        await message.channel.send('Hello World! I am alive to make you laugh!')
 
 client.run(TOKEN)
