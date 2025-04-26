@@ -591,7 +591,16 @@ class Staff(commands.Cog):
             description="The emoji to be on the button. You can add more later."
         ),
         color=ParamInfo(
-            choices=["blurple", "grey", "red", "green"],
+            choices=[
+                                "blurple",
+                                "grey",
+                                "red",
+                                "green",
+                                "primary",
+                                "secondary",
+                                "success",
+                                "danger"
+                        ],
             description="Color of the button.",
         ),
         role: disnake.Role = ParamInfo(
@@ -656,7 +665,16 @@ class Staff(commands.Cog):
         new_emoji: str,
         role: disnake.Role,
         color=ParamInfo(
-            choices=["blurple", "grey", "red", "green"],
+           choices=[
+                                "blurple",
+                                "grey",
+                                "red",
+                                "green",
+                                "primary",
+                                "secondary",
+                                "success",
+                                "danger"
+                        ],  
             description="Color of the button.",
         ),
         channel: disnake.TextChannel = ParamInfo(
