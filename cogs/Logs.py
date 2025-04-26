@@ -190,6 +190,8 @@ class Log(Cog):
     @Cog.listener()
     async def on_slash_command(self, inter):
         Sico_log_channel = self.bot.get_channel(self.bot.config.channels.Sico_logs)
+        if Sico_log_channel is None:
+            Sico_log_channel = self.log_channel
         embed = Embed(
             colour=inter.author.colour,
             timestamp=datetime.now(),
@@ -417,9 +419,7 @@ class Log(Cog):
         )
 
         await self.log_channel.send(embed=embed)
-
-    @Cog.listener()
-    async def on_member_unban(self, guild: disnake.Guild, user: disnake.User):
+    async def on_member_unban(self, _guild: disnake.Guild, user: disnake.User):
         """Sends a message in log channel if member gets unbanned from the server."""
         embed = Embed(
             title="Member unbanned",
@@ -427,6 +427,7 @@ class Log(Cog):
             colour=disnake.Color.green(),
             timestamp=datetime.now(),
         )
+
 
         await self.log_channel.send(embed=embed)  # todo switch to guild channel.
 
