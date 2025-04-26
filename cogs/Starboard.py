@@ -1,0 +1,58 @@
+from datetime import datetime
+
+import disnake
+from disnake.ext import commands
+
+from utils.bot import Sico
+
+
+class Starboard(commands.Cog):
+    def __init__(self, bot: Sico):
+        self.bot = bot
+        self.starboard_channel_id = self.bot.config.channels.starboard
+        self.star_emoji = "⭐"
+        self.num_of_stars = 4
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+        channel = self.bot.get_channel(payload.channel_id)
+        if (
+            channel.guild.id != self.bot.config.guilds.main_guild
+            or channel.id == self.starboard_channel_id
+        ):
+            return
+        message = await channel.fetch_message(payload.message_id)
+        starboard_channel = message.guild.get_channel(self.starboard_channel_id)
+        if payload.emoji.name == self.star_emoji and not channel == starboard_channel:
+            for reaction in message.reactions:
+                if (
+                    reaction.emoji == self.star_emoji
+                    and reaction.count == self.num_of_stars
+                ):
+                    channel_history = await starboard_channel.history(
+                        limit=100
+                    ).flatten()
+                    # check if message is already in starboard
+                    for msg in channel_history:
+                        if msg.embeds:
+                            if (
+                                msg.embeds[0].description.split("\n\n")[0]
+                                == message.content
+                            ):
+                                return
+                    embed = disnake.Embed(
+                        description=f"{message.content}\n\n**[Jump to message]({message.jump_url})**",
+                        color=disnake.Color.gold(),
+                        timestamp=datetime.now(),
+                    )
+                    if message.attachments:
+                        embed.set_image(url=message.attachments[0].url)
+                    embed.set_author(
+                        name=message.author,
+                        icon_url=message.author.display_avatar.url,
+                    )
+                    await starboard_channel.send(embed=embed)
+
+
+def setup(bot):
+    bot.add_cog(Starboard(bot))

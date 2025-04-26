@@ -3,9 +3,9 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv("secrets.env")
-from utils.bot import OGIROID
+from utils.bot import Sico
 
-bot = OGIROID()
+bot = Sico()
 TOKEN = bot.config.tokens.bot
 
 
