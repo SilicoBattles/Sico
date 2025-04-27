@@ -22,7 +22,7 @@ class Channels:
     bug_report_Sico: int = 1366021790786261155
     errors: int = 1263889192820281374
     tickets: int = 1366021790786261155
-    logs: int = 1263889192820281374
+    logs: int = 1366024861167915150
     staff_vote: int = 1263889167624966197
     welcome: int = 1263897808944107642
     goodbye: int = 1263897808944107642  # same as welcome
@@ -42,7 +42,7 @@ class Channels:
         cls.bug_report_Sico: int = 1366021790786261155
         cls.errors: int = 1263889192820281374
         cls.tickets: int = 1366021790786261155
-        cls.logs: int = 1263889192820281374
+        cls.logs: int = 1366024861167915150
         cls.staff_vote: int = 1263889167624966197
         cls.welcome: int = 1263897808944107642
         cls.goodbye: int = 1263897808944107642  # same as welcome
