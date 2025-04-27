@@ -34,7 +34,7 @@ class Channels:
     uploads: int = 1366021547030085712
     birthdays: int = 1263929786829377547  # general channel
     Sico_logs: int = 1366024861167915150
-    ticket_logs: int = 1263889192820281374
+    ticket_logs: int = 1366024861167915150
 
     @classmethod
     def dev(cls):
@@ -54,7 +54,7 @@ class Channels:
         cls.uploads: int = 1366021547030085712
         cls.birthdays: int = 1263929786829377547  # general channel
         cls.Sico_logs: int = 1366024861167915150
-        cls.ticket_logs: int = 1263889192820281374
+        cls.ticket_logs: int = 1366024861167915150
         return cls
 
 
